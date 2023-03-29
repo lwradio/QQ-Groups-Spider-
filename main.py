@@ -1,9 +1,5 @@
 import urllib3
 from requests import post
-from selenium import webdriver
-import time
-import requests
-from selenium.webdriver.common.by import By
 
 def hash33_bkn(skey):
     e = skey
@@ -31,31 +27,6 @@ def post_html(url, submit_cookies, submit_data):
 
     return html
 
-
-def get_cookie():
-    # 创建一个Chrome浏览器实例
-    driver = webdriver.Chrome()
-    # 访问QQ登录页面
-    driver.get("https://qzone.qq.com/")
-    # 等待页面加载完成
-    time.sleep(5)
-    # 切换到登录框所在的iframe
-    driver.switch_to.frame("login_frame")
-    # 点击“账号密码登录”按钮
-    driver.find_element(By.ID, "switcher_plogin").click()
-    # 输入QQ号和密码
-    driver.find_element(By.ID, "u").send_keys("1579704169")
-    driver.find_element(By.ID, "p").send_keys("liuwei19990615++")
-    # 点击“登录”按钮
-    driver.find_element(By.ID, "login_button").click()
-    # 等待登录完成并获取Cookie
-    time.sleep(10)
-    cookie = driver.get_cookies()
-    # 关闭浏览器
-    driver.quit()
-    return cookie
-
-
 def get_group_info():
     url = "https://qun.qq.com/cgi-bin/group_search/pc_group_search"
     # 获取Cookie
@@ -70,9 +41,9 @@ def get_group_info():
               "_qpsvr_localtk": "0.6904930856141818",
               "ptui_loginuin": "1579704169",
               "uin": "o1579704169",
-              "skey": "@sB8GVVT5o",
-              'pt4_token': '-bbYaBdB1YkHC7t*PQJnZiJsqMsUXE6G8zPA5imF2mc_',
-              'p_skey': 'DJQL99eP19i8zUmfkjbj8xc990BLFi6-kc4Nt4AYn-0_'
+              "skey": "@iMLArLvNa",
+              'pt4_token': 'Sf6zJ5c2Pm1q8Q6p3-QC9Q8d60iyEvOOBn4VWOASwws_',
+              'p_skey': 'CJJbBWKekZH4VCIJLQxpihlsGeAU0ox1Nhc*j8p6s2A_'
               }
     bkn = hash33_bkn(cookie['skey'])
     data = {
@@ -82,7 +53,7 @@ def get_group_info():
         "iso": "1",
         "src": "1",
         "v": "4903",
-        "bkn": bkn,
+        # "bkn": bkn,
         "isRecommend": "false",
         "city_id": "0",
         "from": "1",
@@ -92,7 +63,7 @@ def get_group_info():
         "sort": "0",
         "wantnum": "24",
         "page": "0",
-        "ldw": bkn
+        # "ldw": bkn
     }
     response = post_html(url,cookie,data)
     # response = requests.post(url, headers=headers, data=data)
