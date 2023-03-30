@@ -43,11 +43,11 @@ def dosearch(number):
 
 def send_email(subject, content, attachment_path=None):
     # 发件人邮箱
-    sender = 'zhangengang@qq.com'
+    sender = ''
     # 发件人邮箱的SMTP授权码
-    password = 'wirxfytqbxcmbhaa'
+    password = ''
     # 收件人邮箱
-    receiver = 'lw-wradio@foxmail.com'
+    receiver = ''
 
     # 创建一个带附件的邮件实例
     msg = MIMEMultipart()
