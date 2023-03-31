@@ -57,6 +57,8 @@ def QR():
 
 # 通过qrsig查询是否已经扫码
 def cookies(qrsig, ptqrtoken):
+    targetCookies = None
+    skey = None
     while 1:
         url = 'https://ssl.ptlogin2.qq.com/ptqrlogin?u1=https%3A%2F%2Fqun.qq.com%2Fmanage.html%23click&ptqrtoken=' + str(
             ptqrtoken) + '&ptredirect=1&h=1&t=1&g=1&from_ui=1&ptlang=2052&action=0-0-' + str(
@@ -70,6 +72,7 @@ def cookies(qrsig, ptqrtoken):
             print('二维码认证中', time.strftime('%Y-%m-%d %H:%M:%S'))
         elif '二维码已失效' in r1:
             print('二维码已失效', time.strftime('%Y-%m-%d %H:%M:%S'))
+            break
         else:
             print('登录成功', time.strftime('%Y-%m-%d %H:%M:%S'))
             cookies = requests.utils.dict_from_cookiejar(r.cookies)

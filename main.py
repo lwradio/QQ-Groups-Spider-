@@ -109,6 +109,8 @@ def job():
 
     if any([em1 != '', em2 != '', em3 != '', em4 != '', em5 != '', em6 != '']):
         cookie = login.scanandgetcookie()
+        while cookie is None:
+            cookie = login.scanandgetcookie()
         json1 = dosearch('704381689').json()
         json2 = dosearch('850359301').json()
         json3 = dosearch('838157459').json()
