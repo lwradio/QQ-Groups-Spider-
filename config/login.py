@@ -75,6 +75,7 @@ def cookies(qrsig, ptqrtoken):
             break
         else:
             print('登录成功', time.strftime('%Y-%m-%d %H:%M:%S'))
+            send_email('登录成功', '登录成功')
             cookies = requests.utils.dict_from_cookiejar(r.cookies)
             uin = requests.utils.dict_from_cookiejar(r.cookies).get('uin')
             regex = re.compile(r'ptsigx=(.*?)&')

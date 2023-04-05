@@ -1,4 +1,5 @@
 import json
+import time
 from datetime import datetime
 
 from email.mime.application import MIMEApplication
@@ -107,7 +108,7 @@ def job():
     em5 = json5['em']
     em6 = json6['em']
 
-    if any([em1 != '', em2 != '', em3 != '', em4 != '', em5 != '', em6 != '']):
+    if any([em1 == 'user err [errcode:4:0]', em2 == 'user err [errcode:4:0]', em3 == 'user err [errcode:4:0]', em4 == 'user err [errcode:4:0]', em5 == 'user err [errcode:4:0]', em6 == 'user err [errcode:4:0]']):
         cookie = login.scanandgetcookie()
         while cookie is None:
             cookie = login.scanandgetcookie()
@@ -130,12 +131,13 @@ def job():
     elif json6.get('gTotal') is not None:
         send_email('232094620', '群可查找到')
     else:
-        print('查找失败')
+        print('查找失败',time.strftime('%Y-%m-%d %H:%M:%S'))
+
 
 
 if __name__ == '__main__':
     cookie = login.scanandgetcookie()
     scheduler = BlockingScheduler()
-    scheduler.add_job(job, 'interval', minutes=30, next_run_time=datetime.now())
+    scheduler.add_job(job, 'interval', minutes=5, next_run_time=datetime.now())
     # scheduler.add_job(job, 'interval', minutes=1, next_run_time=datetime.now())
     scheduler.start()
